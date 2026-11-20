@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10101b"><title>RecallRocket — Learn it. Keep it.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span><span>recall<span class="brand-accent">rocket</span></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav>
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> Overview</button>
+      <button class="nav-item" data-view="decks"><span>▤</span> My decks</button>
+      <button class="nav-item" data-view="leaderboard"><span>♜</span> Leaderboard</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="streak-mini"><div class="flame">♨</div><div><strong id="side-streak">7 day streak</strong><small>You're on fire. Keep going!</small></div></div>
+      <button class="nav-item" id="theme-toggle"><span>◐</span> Toggle appearance</button>
+      <div class="profile"><div class="avatar">Y</div><div><strong>You</strong><small>Campus learner</small></div><span class="dots">•••</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">Workspace <span>/</span> <b id="crumb-current">Overview</b></div><div class="top-actions"><span class="today" id="today-label"></span><button class="icon-btn" id="add-deck-top" title="Create deck">＋</button><div class="avatar small">Y</div></div></header>
+    <section id="dashboard-view" class="view">
+      <div class="welcome-row"><div><div class="eyebrow">MONDAY MOTIVATION ✨</div><h1>Make today <span>count.</span></h1><p class="muted">A little progress every day adds up to lasting knowledge.</p></div><div class="rocket-art">🚀</div></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">▣</div><div class="stat-label">Cards due today</div><div class="stat-value" id="due-count">5</div><div class="stat-foot"><span class="positive">Ready to review</span> · across all decks</div></article>
+        <article class="stat-card"><div class="stat-icon orange">♨</div><div class="stat-label">Current streak</div><div class="stat-value"><span id="streak-count">7</span><small> days</small></div><div class="stat-foot">Your best is <b>12 days</b></div></article>
+        <article class="stat-card"><div class="stat-icon blue">◷</div><div class="stat-label">Cards mastered</div><div class="stat-value" id="mastered-count">24</div><div class="stat-foot">Keep building your memory</div></article>
+        <article class="stat-card"><div class="stat-icon green">✧</div><div class="stat-label">Memory points</div><div class="stat-value" id="points-count">940</div><div class="stat-foot"><span class="positive">↑ 12%</span> this week</div></article>
+      </div>
+      <div class="content-grid">
+        <section class="panel review-panel"><div class="panel-head"><div><div class="eyebrow">YOUR DAILY QUEUE</div><h2>Ready when you are</h2></div><span class="count-pill" id="queue-pill">5 cards</span></div>
+          <div class="featured-deck"><div class="deck-icon violet">⌘</div><div class="deck-info"><strong>Algorithms</strong><small>Computer Science · <span id="algorithm-due">5 cards due</span></small></div><div class="progress-wrap"><div class="progress-label"><span>Daily goal</span><b id="goal-text">0 / 5</b></div><div class="progress"><i id="goal-progress"></i></div></div><button class="primary-btn" id="start-review">Start review <span>→</span></button></div>
+          <div class="queue-list" id="queue-list"></div>
+        </section>
+        <section class="panel side-panel"><div class="panel-head"><div><div class="eyebrow">YOUR MOMENTUM</div><h2>Study activity</h2></div><button class="more-btn">•••</button></div>
+          <div class="streak-hero"><div class="streak-flame">🔥</div><div><strong><span id="hero-streak">7</span> days</strong><small>You're building a habit!</small></div><span class="badge-mini">7 DAY BADGE</span></div>
+          <div class="week-row" id="week-row"></div><div class="week-caption"><span>LAST 7 DAYS</span><b>4 of 7 active</b></div>
+          <div class="tip-card"><div class="tip-icon">✦</div><div><b>Smart tip</b><p>Reviewing just 10 minutes a day can dramatically improve long-term recall.</p></div></div>
+          <div class="panel-head leaderboard-heading"><div><div class="eyebrow">CAMPUS CHALLENGE</div><h2>Leaderboard</h2></div><button class="text-btn" data-goto="leaderboard">View all →</button></div>
+          <div id="mini-leaderboard"></div>
+        </section>
+      </div>
+      <div class="bottom-note"><span>✦</span> Powered by the <b>SuperMemo-2 algorithm</b> · Your review schedule adapts to you.</div>
+    </section>
+    <section id="decks-view" class="view hidden"><div class="page-heading"><div><div class="eyebrow">YOUR LIBRARY</div><h1>My <span>decks.</span></h1><p class="muted">Organize what you learn, one card at a time.</p></div><button class="primary-btn" id="create-deck">＋ Create a deck</button></div><div class="deck-grid" id="deck-grid"></div></section>
+    <section id="leaderboard-view" class="view hidden"><div class="page-heading"><div><div class="eyebrow">CAMPUS CHALLENGE</div><h1>The <span>leaderboard.</span></h1><p class="muted">A little friendly competition goes a long way.</p></div><div class="period-pill">🏆 This week</div></div><div class="panel leaderboard-panel"><div class="leaderboard-banner"><div><div class="eyebrow">YOUR CURRENT POSITION</div><h2>You're climbing fast.</h2><p>Keep reviewing to hold your place in the top 3.</p></div><div class="rank-big">#<span id="your-rank">2</span><small>YOUR RANK</small></div></div><div class="leader-table" id="leader-table"></div></div></section>
+  </main>
+</div>
+<div class="modal-backdrop hidden" id="study-modal"><div class="study-modal">
+  <div class="study-top"><button class="back-btn" id="close-study">← <span>Back to overview</span></button><div class="session-meta"><span id="study-deck-name">Algorithms</span><span class="dot">·</span><span id="study-progress">1 of 5</span></div><div class="session-progress"><i id="session-progress-bar"></i></div></div>
+  <div class="study-center"><div class="card-hint">✦ <span id="card-side-label">QUESTION</span> <span class="hint-right">SPACE TO FLIP</span></div>
+    <div class="flashcard-wrap" id="flashcard-wrap"><div class="flashcard" id="flashcard"><div class="card-face card-front"><div class="card-topline"><span class="deck-chip">⌘ ALGORITHMS</span><span class="card-number" id="card-number">CARD 01</span></div><div class="card-content"><div class="question-mark">Q.</div><h2 id="card-question">What is the time complexity of QuickSort?</h2></div><div class="card-bottom"><span>Think it through before revealing</span><span>↻ FLIP CARD</span></div></div><div class="card-face card-back"><div class="card-topline"><span class="deck-chip">✦ THE ANSWER</span><span class="card-number">RECALLROCKET</span></div><div class="card-content"><div class="question-mark answer-mark">A.</div><p id="card-answer"></p></div><div class="card-bottom"><span>How well did you remember?</span><span>RATE YOUR RECALL ↓</span></div></div></div></div>
+    <button class="flip-button" id="flip-button">↻ Reveal answer <small>(Space)</small></button>
+    <div class="rating-area hidden" id="rating-area"><p>How well did you remember?</p><div class="rating-buttons"><button class="rate rate-again" data-grade="1"><b>1</b><strong>Again</strong><small>Forgot</small></button><button class="rate rate-hard" data-grade="3"><b>3</b><strong>Hard</strong><small>Struggled</small></button><button class="rate rate-good" data-grade="4"><b>4</b><strong>Good</strong><small>Recalled</small></button><button class="rate rate-easy" data-grade="5"><b>5</b><strong>Perfect</strong><small>Instant recall</small></button></div><div class="keyboard-note">TIP: Press <kbd>1</kbd>–<kbd>5</kbd> to rate your answer</div></div>
+  </div>
+</div></div>
+<div class="modal-backdrop hidden" id="deck-modal"><div class="form-modal"><button class="modal-close" id="close-deck">×</button><div class="eyebrow">BUILD YOUR LIBRARY</div><h2>Create a new deck</h2><p class="muted">Give your next learning sprint a home.</p><label>Deck name</label><input id="deck-name-input" placeholder="e.g. Data Structures"><label>Subject</label><input id="deck-subject-input" placeholder="e.g. Computer Science"><label>First question</label><textarea id="new-question" placeholder="Write a question..."></textarea><label>Answer</label><textarea id="new-answer" placeholder="Write the answer..."></textarea><button class="primary-btn full-btn" id="save-deck">Create deck <span>→</span></button></div></div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>

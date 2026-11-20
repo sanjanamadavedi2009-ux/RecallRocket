@@ -1,0 +1,8 @@
+{
+  "name": "recallrocket-memorymint",
+  "version": "1.0.0",
+  "description": "SM-2 spaced repetition flashcard application",
+  "main": "server.js",
+  "scripts": {"start": "node server.js", "dev": "node --watch server.js"},
+  "dependencies": {"express": "^4.21.2"}
+}
